@@ -1,8 +1,8 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask
 
-from flask_bootstrap import Bootstrap
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_restful import Api
@@ -16,7 +16,7 @@ from .api.clinic import ClinicAPI
 
 # instantiate extensions
 
-bootstrap = Bootstrap()
+
 db = SQLAlchemy()
 migrate = Migrate()
 api = Api()
@@ -40,7 +40,7 @@ def create_app(env=None):
     else:
         app.config.from_object(config[env])
     # set up extensions
-    for ext in (bootstrap, db, migrate):
+    for ext in (db, migrate):
         if ext == migrate:
             ext.init_app(app, db)
         else:
